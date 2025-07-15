@@ -75,24 +75,28 @@
     MovieStream
   </header>
 
-  <!-- Search form: default action reload -->
-  <form method="GET" action="#" class="w-full max-w-xl flex mb-12">
+
+<form method="GET" action="#" class="w-full max-w-xl mb-12 px-2">
+  <div class="flex">
     <input 
       type="text" 
       name="q" 
       placeholder="Search for a movie..." 
-      class="flex-grow rounded-l-lg px-5 py-3 text-black text-lg outline-none"
+      class="flex-grow rounded-l-lg px-3 py-2 text-black text-base sm:text-lg outline-none"
       spellcheck="false" 
       autocomplete="off"
       required
     />
     <button 
       type="submit"
-      class="btn-yellow rounded-r-lg px-6 py-3 text-lg"
+      class="btn-yellow rounded-r-lg px-4 py-2 text-base sm:text-lg"
     >
       Search
     </button>
-  </form>
+  </div>
+</form>
+
+
 
   <!-- ...everything before remains the same... -->
 
