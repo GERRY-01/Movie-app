@@ -27,7 +27,7 @@ API_KEY = config('API_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = config('ALLOWED_HOSTS', default='localhost').split(',')
+ALLOWED_HOSTS = ['movie-app-7yxu.onrender.com', 'localhost', '127.0.0.1']
 
 # Application definition
 
