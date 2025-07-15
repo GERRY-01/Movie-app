@@ -30,10 +30,21 @@ def index(request):
 
     if top_rated_response.status_code == 200:
         for movie in top_rated_data:
+            id = movie.get('id')
+            title = movie.get('title')
+            poster_url = f"{image_base_url}{movie['poster_path']}"
+            rating = movie.get('vote_average','N/A')
+            details_url = f"https://api.themoviedb.org/3/movie/{id}"
+            details_response = requests.get(details_url, params={'api_key': api_key})
+            details_data = details_response.json()
+            imdb_id = details_data.get('imdb_id')
+
             top_rated_movies.append({
-                'title': movie.get('title'),
-                'poster_url': f"{image_base_url}{movie['poster_path']}",
-                'rating': movie.get('vote_average','N/A')
+                'id': id,
+                'title': title,
+                'poster_url': poster_url,
+                'rating': rating,
+                'stream_url': f"https://vidsrc.to/embed/movie/{imdb_id}" if imdb_id else None
             })
             
     movie_data = None
