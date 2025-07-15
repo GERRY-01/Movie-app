@@ -154,25 +154,42 @@
 {% endif %}
 
 
-<section class="w-full max-w-5xl">
+<!--===============Trending movies -->
+<section class="w-full max-w-5xl mt-10">
   <h2 class="text-3xl font-extrabold mb-6 select-none">Trending Movies</h2>
 
   <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-6">
     {% for movie in trending_movies %}
-      <div class="movie-card" title="{{ movie.title }}">
-        <img 
-          src="{{ movie.poster_url }}" 
-          alt="{{ movie.title }}" 
-          class="movie-poster" 
-          loading="lazy"
-        />
-        <div class="movie-title">{{ movie.title }}</div>
-        <div class="text-sm text-center py-2">⭐ {{ movie.rating }}</div>
+    <div class="movie-card p-2">
+      {% if movie.poster_url %}
+      <img 
+        src="{{ movie.poster_url }}" 
+        alt="{{ movie.title }}" 
+        class="movie-poster" 
+        loading="lazy"
+      />
+      {% else %}
+      <div class="movie-poster bg-gray-700 flex items-center justify-center text-sm text-white h-64">
+        No Image Available
       </div>
+      {% endif %}
+      <div class="movie-title">{{ movie.title }}</div>
+      <div class="text-center text-sm text-yellow-300 mb-2">⭐ {{ movie.rating }}</div>
+
+      {% if movie.stream_url %}
+      <div class="text-center">
+        <a href="{{ movie.stream_url }}" target="_blank">
+          <button class="btn-yellow px-4 py-1 rounded">▶️ Watch</button>
+        </a>
+      </div>
+      {% endif %}
+    </div>
     {% endfor %}
   </div>
 </section>
 
+
+<!--================Top rated movies -->
 <section class="w-full max-w-5xl mt-10">
   <h2 class="text-3xl font-extrabold mb-6 select-none">Top Rated Movies</h2>
 
