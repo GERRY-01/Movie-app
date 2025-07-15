@@ -1,10 +1,12 @@
 from django.shortcuts import render
 import requests
+from django.conf import settings
+
 
 # Create your views here.
 
 def index(request):
-    api_key = '07faedb9c6d062cd3deeb29fe4c16559'
+    api_key = settings.API_KEY
     search_url = 'https://api.themoviedb.org/3/search/multi'
     image_base_url = 'https://image.tmdb.org/t/p/w500'
     trending_url = 'https://api.themoviedb.org/3/trending/movie/week'
