@@ -11,17 +11,29 @@ def index(request):
     top_rated_url = 'https://api.themoviedb.org/3/movie/top_rated'
 
     #trending movies
-    response = requests.get(trending_url, params={'api_key': api_key})
-    trending_data = response.json().get('results', [])
+    trending_response = requests.get(trending_url, params={'api_key': api_key})
+    trending_data = trending_response.json().get('results', [])
     trending_movies = []
 
-    if response.status_code == 200:
+    if trending_response.status_code == 200:
         for movie in trending_data:
+            id = movie.get('id')
+            title = movie.get('title')
+            poster_url = f"{image_base_url}{movie['poster_path']}"
+            rating = movie.get('vote_average','N/A')
+            details_url = f"https://api.themoviedb.org/3/movie/{id}"
+            details_response = requests.get(details_url, params={'api_key': api_key})
+            details_data = details_response.json()
+            imdb_id = details_data.get('imdb_id')
+
             trending_movies.append({
-                'title': movie.get('title'),
-                'poster_url': f"{image_base_url}{movie['poster_path']}",
-                'rating': movie.get('vote_average','N/A')
+                'id': id,
+                'title': title,
+                'poster_url': poster_url,
+                'rating': rating,
+                'stream_url': f"https://vidsrc.to/embed/movie/{imdb_id}" if imdb_id else None
             })
+            
     
     #top rated 
     top_rated_response = requests.get(top_rated_url, params={'api_key': api_key})
