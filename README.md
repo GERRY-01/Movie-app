@@ -59,6 +59,5 @@ python manage.py runserver
 ```
 
 ### Thisis the link of the deployed app
-```bash
+
 https://movie-app-7yxu.onrender.com
-```
